@@ -1,0 +1,39 @@
+
+#menu {
+  display: none;
+  background: $red;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+
+  -webkit-transition: -webkit-transform .5s;
+
+  &.menu-visible {
+    display: block;
+  }
+
+}
+
+#logo {
+  position: fixed;
+  width: 100px;
+  z-index: 200;
+  right: 10px;
+  top: 0;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+#content-wrapper {
+  background: #fff;
+}
+
+
+

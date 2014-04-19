@@ -1,0 +1,55 @@
+#article-content {
+  position: absolute;
+  background: #000;
+  z-index: -1;
+  top: 0;
+
+
+
+
+  &.show {
+
+//    -webkit-transform: translateX(0px);
+  }
+}
+
+.article {
+
+  .article-image {
+    position: relative;
+  }
+
+  // @todo: global stuff for category to be defined.
+  .category {
+    background: #fff;
+    bottom: 0;
+    left: 10px;
+    color: $red;
+    font-size: 10px;
+    padding: 2px;
+    position: absolute;
+  }
+
+  .hl-wrapper {
+    color: #fff;
+    background: $red;
+    padding: 10px;
+
+    .kicker,
+    .headline {
+      margin: 0;
+    }
+
+    .kicker {
+      font-size: 17px;
+    }
+
+    .headline {
+      font-size: 23px;
+    }
+  }
+}
+
+.article-content {
+  padding: 10px;
+}
