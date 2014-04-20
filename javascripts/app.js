@@ -94,9 +94,13 @@ var getContent = function (cat, nid) {
         data: {'cat': c, 'node': n},
         contentType: 'application/json',
         success: function (data, status) {
+            // Define medium-Teaser
+            var tm = [5, 6, 7, 8, 13, 14, 15, 16];
             $.each(data['nodes'], function (i, node) {
                 if (i == 0)
                     render(node.node, 'teaser', teaserConf.teaserBig);
+                else if (tm.indexOf(i) >= 0)
+                    render(node.node, 'teaser', teaserConf.teaserMedium);
                 else
                     render(node.node, 'teaser', teaserConf.teaserSmall);
             });
@@ -111,10 +115,9 @@ var render = function (obj, view, conf) {
 
 var renderTeaser = function (obj, conf) {
     var view;
-    view = '<div class="' + conf.classes + '">' +
+    view = '<div class="' + conf.classes + '" data-c="" data-n="">' +
         '<div class="teaser-image">' +
-        '<div class="category">' +
-        '</div>' +
+        '<div class="category">' + obj.term_node_tid +   '</div>' +
         '<img src="' + obj.field_media_image + '" />' +
         '</div>' +
         '<div class="teaser-content">' +

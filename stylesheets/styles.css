@@ -7655,7 +7655,7 @@ img {
   position: relative;
 }
 /* line 32, ../sass/layout/_teaser.scss */
-.teaser-big .hl-wrapper {
+.teaser-big .teaser-content {
   bottom: 0;
   background: #af1028;
   color: #fff;
