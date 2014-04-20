@@ -1,12 +1,3 @@
-/**
- * Some initial variables to be set.
- * @type {*}
- */
-//var windowOrientation = window.orientation;
-//var windowHeight = window.innerHeight;
-//var windowWidth = window.innerWidth;
-
-
 var globalData = {
     wHeight: window.innerHeight,
     wWidth: window.innerWidth,
@@ -71,34 +62,69 @@ var globalData = {
     }
 };
 
+var teaserConf = {
+    'teaserBig': {
+        'classes': 'teaser teaser-big',
+        'TagKicker': 'h2',
+        'TagHeadline': 'h3'
+    },
+    'teaserMedium': {
+        'classes': 'teaser teaser-medium',
+        'TagKicker': 'h2',
+        'TagHeadline': 'h3'
+    },
+    'teaserSmall': {
+        'classes': 'teaser teaser-small',
+        'TagKicker': 'h2',
+        'TagHeadline': 'h3'
+    }
+};
+
 var getContent = function (cat, nid) {
+    var c = '', n = '';
+    var view;
 
+    if (cat) c = '/' + cat;
 
-
+    if (nid && cat) n = '/' + nid;
 
     $.ajax({
         type: 'GET',
-        url: 'http://goc.local/jsontest',
-        jsonCallback: 'jsonCallback',
+        url: 'import.php',
+        data: {'cat': c, 'node': n},
         contentType: 'application/json',
-        dataType: 'jsonp',
         success: function (data, status) {
             $.each(data['nodes'], function (i, node) {
-
-                $.each(node, function (key, value) {
-                    console.log(key);
-                    $('.content-wrapper-inner')
-                        .append('<div class="teaser">' +
-                            '<h1>' + value.field_kicker + '</h1>' +
-                            '<h2>' + value.title + '</h2>' +
-                            '</div>');
-                });
-
-
+                if (i == 0)
+                    render(node.node, 'teaser', teaserConf.teaserBig);
+                else
+                    render(node.node, 'teaser', teaserConf.teaserSmall);
             });
         }
     })
 };
+
+
+var render = function (obj, view, conf) {
+    if (view == 'teaser') renderTeaser(obj, conf);
+}
+
+var renderTeaser = function (obj, conf) {
+    var view;
+    view = '<div class="' + conf.classes + '">' +
+        '<div class="teaser-image">' +
+        '<div class="category">' +
+        '</div>' +
+        '<img src="' + obj.field_media_image + '" />' +
+        '</div>' +
+        '<div class="teaser-content">' +
+        '<' + conf.TagKicker + ' class="kicker">' + obj.field_kicker + '</' + conf.TagKicker + '>' +
+        '<' + conf.TagHeadline + ' class="headline">' + obj.field_kicker + '</' + conf.TagHeadline + '>' +
+        '</div>' +
+        '</div>';
+
+    $('.content-wrapper-inner').append(view);
+}
 
 
 window.addEventListener('orientationchange', function () {
@@ -108,6 +134,8 @@ window.addEventListener('orientationchange', function () {
 
 $(document).ready(function () {
     var menu = $('#menu');
+
+    getContent();
 
     globalData.updateDimensions();
 
@@ -139,63 +167,11 @@ $(document).ready(function () {
         }
     });
 
-
-//    $('#logo').on('click', function () {
-//
-//        if ($('#menu').hasClass('menu-visible')) {
-//            $('#menu').addClass('menu-visible');
-//
-//            $('#menu').css({
-//                'display': 'block',
-//                'top': -windowHeight + 'px',
-//                '-webkit-transform': 'translateY(' + -windowHeight + 'px)'
-//            });
-//
-//
-//            $('#menu').removeClass('menu-visible');
-//            $('#content-wrapper').removeAttr('style');
-//            $('.content-wrapper-inner').removeAttr('style');
-//
-//        }
-//        else {
-//            setTimeout(updateContentwrapper, 500);
-//
-//            $('#menu').css({
-//                'top': -windowHeight + $('body').scrollTop() + 'px'
-//            });
-//
-//            $('#menu').addClass('menu-visible');
-//
-//            $('#menu').css({
-//                'top': -windowHeight + $('body').scrollTop() + 'px',
-//                '-webkit-transform': 'translateY(' + windowHeight + 'px)'
-//            });
-//        }
-//    });
-
     // Prevent links to be opened in mobile safari.
     $('a').click(function () {
-
-        $('#content-wrapper').css({
-            'height': windowHeight + 'px',
-            'width': windowWidth + 'px',
-            'overflow': 'hidden'
-        });
-
-
-        $('#article-content').addClass('show');
-
-        $('#article-content').css({
-
-            'z-index': 300,
-            '-webkit-transform': 'translateX(0)'
-
-        });
-
-
-        if (isStandalone) {
+        if (globalData.isStandalone) {
             event.preventDefault();
-            //window.location = $(this).attr('href');
+            window.location = $(this).attr('href');
         }
     });
 });

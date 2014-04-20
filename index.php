@@ -59,13 +59,8 @@
 </div>
 
 <div id="content-wrapper">
-  <div class="content-wrapper-inner">
-
-
-  </div>
+  <div class="content-wrapper-inner"></div>
 </div>
-
-<!--<div id="article-content"></div>-->
 
 </body>
 </html>
