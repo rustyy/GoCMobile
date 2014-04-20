@@ -115,9 +115,9 @@ var render = function (obj, view, conf) {
 
 var renderTeaser = function (obj, conf) {
     var view;
-    view = '<div class="' + conf.classes + '" data-c="" data-n="">' +
+    view = '<div class="' + conf.classes + '" data-c="' + obj.tid + '" data-n="' + obj.nid + '">' +
         '<div class="teaser-image">' +
-        '<div class="category">' + obj.term_node_tid +   '</div>' +
+        '<div class="category">' + obj.term_node_tid + '</div>' +
         '<img src="' + obj.field_media_image + '" />' +
         '</div>' +
         '<div class="teaser-content">' +
@@ -170,11 +170,15 @@ $(document).ready(function () {
         }
     });
 
-    // Prevent links to be opened in mobile safari.
-    $('a').click(function () {
-        if (globalData.isStandalone) {
-            event.preventDefault();
-            window.location = $(this).attr('href');
-        }
+    $(document).on('click','.teaser',function(){
+        console.log('click teeaser');
     });
+
+    // Prevent links to be opened in mobile safari.
+//    $('a').click(function () {
+//        if (globalData.isStandalone) {
+//            event.preventDefault();
+//            window.location = $(this).attr('href');
+//        }
+//    });
 });
