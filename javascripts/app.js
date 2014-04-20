@@ -2,9 +2,9 @@
  * Some initial variables to be set.
  * @type {*}
  */
-var windowOrientation = window.orientation;
-var windowHeight = window.innerHeight;
-var windowWidth = window.innerWidth;
+//var windowOrientation = window.orientation;
+//var windowHeight = window.innerHeight;
+//var windowWidth = window.innerWidth;
 
 
 var globalData = {
@@ -71,9 +71,40 @@ var globalData = {
     }
 };
 
+var getContent = function (cat, nid) {
+
+
+
+
+    $.ajax({
+        type: 'GET',
+        url: 'http://goc.local/jsontest',
+        jsonCallback: 'jsonCallback',
+        contentType: 'application/json',
+        dataType: 'jsonp',
+        success: function (data, status) {
+            $.each(data['nodes'], function (i, node) {
+
+                $.each(node, function (key, value) {
+                    console.log(key);
+                    $('.content-wrapper-inner')
+                        .append('<div class="teaser">' +
+                            '<h1>' + value.field_kicker + '</h1>' +
+                            '<h2>' + value.title + '</h2>' +
+                            '</div>');
+                });
+
+
+            });
+        }
+    })
+};
+
+
 window.addEventListener('orientationchange', function () {
     globalData.updateDimensions();
 });
+
 
 $(document).ready(function () {
     var menu = $('#menu');

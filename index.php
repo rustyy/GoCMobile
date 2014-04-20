@@ -18,6 +18,7 @@
 </head>
 <body>
 
+
 <div id="menu">
 
   <ul>
@@ -59,64 +60,6 @@
 
 <div id="content-wrapper">
   <div class="content-wrapper-inner">
-
-    <div class="teaser teaser-big">
-      <div class="hl-wrapper">
-        <h2 class="kicker">Konnte dieses der flehentlich</h2>
-
-        <h3 class="headline">Zwischen beiden Gebauden</h3>
-      </div>
-
-      <a href="article.php"><img class="" src="dummy_content/assassin-s-creed-3-reveal-trailer.jpg"></a>
-    </div>
-
-    <?php for ($i = 0; $i < 5; $i++): ?>
-
-      <div class="teaser teaser-small">
-        <div class="teaser-image">
-          <div class="category">HAW</div>
-          <a href="article.php"><img class="" src="dummy_content/assassin-s-creed-3-reveal-trailer.jpg"></a>
-        </div>
-        <div class="teaser-content">
-          <h2 class="kicker">Konnte dieses der flehentlich</h2>
-
-          <h3 class="headline">Zwischen beiden Gebauden</h3>
-        </div>
-      </div>
-
-    <?php endfor; ?>
-
-    <?php for ($i = 0; $i < 4; $i++): ?>
-      <div class="teaser teaser-medium">
-        <div class="teaser-image">
-          <div class="category">HAW</div>
-          <a href="article.php"><img class="" src="dummy_content/assassin-s-creed-3-reveal-trailer.jpg"></a>
-        </div>
-        <div class="teaser-content">
-          <h2 class="kicker">Konnte dieses der flehentlich</h2>
-
-          <h3 class="headline">Zwischen beiden Gebauden</h3>
-        </div>
-      </div>
-
-    <?php endfor; ?>
-
-
-    <?php for ($i = 0; $i < 5; $i++): ?>
-
-      <div class="teaser teaser-small">
-        <div class="teaser-image">
-          <div class="category">HAW</div>
-          <a href="article.php"><img class="" src="dummy_content/assassin-s-creed-3-reveal-trailer.jpg"></a>
-        </div>
-        <div class="teaser-content">
-          <h2 class="kicker">Konnte dieses der flehentlich</h2>
-
-          <h3 class="headline">Zwischen beiden Gebauden</h3>
-        </div>
-      </div>
-
-    <?php endfor; ?>
 
 
   </div>
