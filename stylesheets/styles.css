@@ -7599,16 +7599,12 @@ button.close {
   display: none;
   background: #af1028;
   color: #fff;
-  position: absolute;
+  position: fixed;
   right: 0;
   left: 0;
   bottom: 0;
   z-index: 100;
   -webkit-transition: -webkit-transform .5s;
-}
-/* line 14, ../sass/layout/_layout.scss */
-#menu.menu-visible {
-  display: block;
 }
 
 /* line 20, ../sass/layout/_layout.scss */

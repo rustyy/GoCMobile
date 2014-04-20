@@ -3,7 +3,7 @@
   display: none;
   background: $red;
   color: #fff;
-  position: absolute;
+  position: fixed;
   right: 0;
   left: 0;
   bottom: 0;
@@ -12,7 +12,7 @@
   -webkit-transition: -webkit-transform .5s;
 
   &.menu-visible {
-    display: block;
+//    display: block;
   }
 
 }

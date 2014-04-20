@@ -6,111 +6,141 @@ var windowOrientation = window.orientation;
 var windowHeight = window.innerHeight;
 var windowWidth = window.innerWidth;
 
-var getOrientation = function () {
-    var wo = window.orientation;
-    if (wo == 0 || wo == 180) {
-        return 'portrait';
-    }
-    else {
+
+var globalData = {
+    wHeight: window.innerHeight,
+    wWidth: window.innerWidth,
+    updateDimensions: function () {
+        this.wHeight = window.innerHeight;
+        this.wWidth = window.innerWidth;
+        this.updateMenu();
+    },
+    orientation: function () {
+        if (window.orientation == 0 || window.orientation == 180)
+            return'portrait';
         return 'landscape';
+    },
+    isStandalone: (function () {
+        if (("standalone" in window.navigator) && window.navigator.standalone) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    })(),
+    updateMenu: function () {
+        $('#menu').css({
+            'height': this.wHeight + 'px',
+            'width': this.wWidth + 'px',
+            '-webkit-transform': 'translateY(' + -this.wHeight + 'px)'
+        });
+    },
+    'menuCSSqueues': function (toggle) {
+        var queues = {
+            'show': [
+                {'-webkit-transform': 'translateY(0)'},
+                {'display': 'block'}
+            ],
+            'hide': [
+                {'-webkit-transform': 'translateY(-' + this.wHeight + 'px)'}
+            ]
+        }
+        return queues[toggle];
+    },
+
+    'menuCSStoggle': function (toggle, el) {
+        // Clone queue.
+        var queue = this.menuCSSqueues(toggle).concat([]);
+        var timeout = 1;
+        // Handle the css styling queue.
+        (function loop() {
+            setTimeout(function () {
+                if (queue.length > 0) {
+                    el.css(queue.pop());
+                    loop();
+                }
+                // Wait for the animation to be finished.
+                // Afterwards hide menu again.
+                if (queue.length == 0 && toggle == 'hide')
+                    setTimeout(function () {
+                        el.css({'display': 'none'})
+                    }, 500);
+
+            }, timeout);
+        })();
     }
-};
-
-var updateDimensions = function () {
-    windowHeight = window.innerHeight;
-    windowWidth = window.innerWidth;
-}
-
-var updateMenu = function () {
-    $('#menu').css({
-        'height': windowHeight + 'px',
-        'width': windowWidth + 'px',
-        'top': -windowHeight + 'px'
-    });
-
-    if ($('#menu').hasClass('menu-visible')) {
-        updateContentwrapper();
-    }
-};
-
-
-var updateArticleContent = function () {
-    $('#article-content').css({
-        'height': windowHeight + 'px',
-        'width': windowWidth + 'px',
-        '-webkit-transform': 'translateX(' + windowWidth + 'px)',
-        '-webkit-transition': '-webkit-transform .5s'
-
-//        'right': windowWidth + 'px'
-    });
-};
-
-var updateContentwrapper = function (hide) {
-    $('#content-wrapper').css({
-        'height': windowHeight + 'px',
-        'width': windowWidth + 'px',
-        'overflow': 'hidden'
-    });
-    $('.content-wrapper-inner').hide();
 };
 
 window.addEventListener('orientationchange', function () {
-    updateDimensions();
-    updateMenu();
-    updateArticleContent();
+    globalData.updateDimensions();
 });
 
-var isStandalone = (function () {
-    if (("standalone" in window.navigator) && window.navigator.standalone) {
-        return true;
-    }
-    else {
-        return false;
-    }
-})();
-
 $(document).ready(function () {
-    $(window).on('scroll', function () {
-        updateDimensions();
-        updateMenu();
-        updateArticleContent();
+    var menu = $('#menu');
+
+    globalData.updateDimensions();
+
+    $(document).on('scroll', function (e) {
+        if (!menu.hasClass('menu-visible'))
+            globalData.updateDimensions();
     });
 
-    updateMenu();
-    updateArticleContent();
+    $(document).on('touchstart', function () {
+    });
+    $(document).on('touchmove', function (e) {
+        if (menu.hasClass('menu-visible'))
+            e.preventDefault();
+    });
+    $(document).on('touchend', function () {
+    });
 
+
+    // Show menu.
     $('#logo').on('click', function () {
-
-        if ($('#menu').hasClass('menu-visible')) {
-            $('#menu').addClass('menu-visible');
-
-            $('#menu').css({
-                'display': 'block',
-                'top': -windowHeight + 'px',
-                '-webkit-transform': 'translateY(' + -windowHeight + 'px)'
-            });
-
-
-            $('#menu').removeClass('menu-visible');
-            $('#content-wrapper').removeAttr('style');
-            $('.content-wrapper-inner').removeAttr('style');
-
+        menu = $('#menu');
+        if (menu.hasClass('menu-visible')) {
+            globalData.menuCSStoggle('hide', menu);
+            menu.removeClass('menu-visible');
         }
         else {
-            setTimeout(updateContentwrapper, 500);
-
-            $('#menu').css({
-                'top': -windowHeight + $('body').scrollTop() + 'px'
-            });
-
-            $('#menu').addClass('menu-visible');
-
-            $('#menu').css({
-                'top': -windowHeight + $('body').scrollTop() + 'px',
-                '-webkit-transform': 'translateY(' + windowHeight + 'px)'
-            });
+            menu.addClass('menu-visible');
+            globalData.menuCSStoggle('show', menu);
         }
     });
+
+
+//    $('#logo').on('click', function () {
+//
+//        if ($('#menu').hasClass('menu-visible')) {
+//            $('#menu').addClass('menu-visible');
+//
+//            $('#menu').css({
+//                'display': 'block',
+//                'top': -windowHeight + 'px',
+//                '-webkit-transform': 'translateY(' + -windowHeight + 'px)'
+//            });
+//
+//
+//            $('#menu').removeClass('menu-visible');
+//            $('#content-wrapper').removeAttr('style');
+//            $('.content-wrapper-inner').removeAttr('style');
+//
+//        }
+//        else {
+//            setTimeout(updateContentwrapper, 500);
+//
+//            $('#menu').css({
+//                'top': -windowHeight + $('body').scrollTop() + 'px'
+//            });
+//
+//            $('#menu').addClass('menu-visible');
+//
+//            $('#menu').css({
+//                'top': -windowHeight + $('body').scrollTop() + 'px',
+//                '-webkit-transform': 'translateY(' + windowHeight + 'px)'
+//            });
+//        }
+//    });
 
     // Prevent links to be opened in mobile safari.
     $('a').click(function () {
