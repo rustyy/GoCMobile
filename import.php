@@ -1,10 +1,18 @@
 <?php header('content-type: application/json; charset=utf-8');
 
 //@todo: security issues to be solved.
-$category = $_GET['cat'];
-$nid = $_GET['n'];
+$category = '';
+$nid = '';
+if (isset($_GET['cat'])) {
+  $category = $_GET['cat'];
+}
 
-$url = 'http://goc:goc_admin@dev.gamesoncampus.de/export' . $category . $nid;
+if (isset($_GET['node'])) {
+  $nid = $_GET['node'];
+}
+
+//@todo: remove rand() due needed for debugging purposes only.
+$url = 'http://goc:goc_admin@dev.gamesoncampus.de/export' . $category . $nid . '?' . rand();
 
 $json = file_get_contents($url);
 

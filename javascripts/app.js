@@ -82,35 +82,47 @@ var teaserConf = {
 
 var getContent = function (cat, nid) {
     var c = '', n = '';
-    var view;
+    var viewFull = false;
 
     if (cat) c = '/' + cat;
 
-    if (nid && cat) n = '/' + nid;
+    if (nid && cat) {
+        n = '/' + nid;
+        viewFull = true;
+    }
 
     $.ajax({
+        cache: false,
         type: 'GET',
         url: 'import.php',
         data: {'cat': c, 'node': n},
         contentType: 'application/json',
         success: function (data, status) {
             // Define medium-Teaser
+            $('.content-wrapper-inner').empty();
             var tm = [5, 6, 7, 8, 13, 14, 15, 16];
             $.each(data['nodes'], function (i, node) {
-                if (i == 0)
-                    render(node.node, 'teaser', teaserConf.teaserBig);
-                else if (tm.indexOf(i) >= 0)
-                    render(node.node, 'teaser', teaserConf.teaserMedium);
-                else
-                    render(node.node, 'teaser', teaserConf.teaserSmall);
+                if (viewFull) {
+                    render(node.node, 'full');
+                }
+                else {
+                    if (i == 0)
+                        render(node.node, 'teaser', teaserConf.teaserBig);
+                    else if (tm.indexOf(i) >= 0)
+                        render(node.node, 'teaser', teaserConf.teaserMedium);
+                    else
+                        render(node.node, 'teaser', teaserConf.teaserSmall);
+                }
             });
+
+            $('.loader').fadeOut('slow');
         }
     })
 };
 
-
 var render = function (obj, view, conf) {
     if (view == 'teaser') renderTeaser(obj, conf);
+    if (view == 'full') renderFull(obj);
 }
 
 var renderTeaser = function (obj, conf) {
@@ -129,6 +141,22 @@ var renderTeaser = function (obj, conf) {
     $('.content-wrapper-inner').append(view);
 }
 
+var renderFull = function (obj) {
+    var view;
+    console.log(obj);
+    view = '<div class="article">' +
+        '<div class="article-image">' +
+        '<img src="' + obj.field_media_image + '" />' +
+        '</div>' +
+        '<h1>' + obj.field_kicker + '</h1>' +
+        '<h2>' + obj.title + '</h2>' +
+        obj.body +
+
+
+        '</div>'
+
+    $('.content-wrapper-inner').append(view);
+};
 
 window.addEventListener('orientationchange', function () {
     globalData.updateDimensions();
@@ -170,15 +198,10 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click','.teaser',function(){
-        console.log('click teeaser');
+    $(document).on('click', '.teaser', function () {
+        var c = $(this).attr('data-c');
+        var n = $(this).attr('data-n');
+        $('.loader').fadeIn();
+        getContent(c, n);
     });
-
-    // Prevent links to be opened in mobile safari.
-//    $('a').click(function () {
-//        if (globalData.isStandalone) {
-//            event.preventDefault();
-//            window.location = $(this).attr('href');
-//        }
-//    });
 });

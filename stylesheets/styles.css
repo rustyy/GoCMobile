@@ -7595,6 +7595,18 @@ button.close {
   }
 }
 /* line 2, ../sass/layout/_layout.scss */
+.loader {
+  background: #af1028 url('../images/loader.gif?1398099560') no-repeat center center;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+/* line 13, ../sass/layout/_layout.scss */
 #menu {
   display: none;
   background: #af1028;
@@ -7607,7 +7619,7 @@ button.close {
   -webkit-transition: -webkit-transform .5s;
 }
 
-/* line 20, ../sass/layout/_layout.scss */
+/* line 31, ../sass/layout/_layout.scss */
 #logo {
   position: fixed;
   width: 100px;
@@ -7616,14 +7628,14 @@ button.close {
   top: 0;
 }
 
-/* line 28, ../sass/layout/_layout.scss */
+/* line 39, ../sass/layout/_layout.scss */
 img {
   display: block;
   height: auto;
   max-width: 100%;
 }
 
-/* line 34, ../sass/layout/_layout.scss */
+/* line 45, ../sass/layout/_layout.scss */
 #content-wrapper {
   background: #fff;
 }

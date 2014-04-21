@@ -1,4 +1,15 @@
 
+.loader {
+  background: $red image-url('loader.gif') no-repeat center center;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
 #menu {
   display: none;
   background: $red;
@@ -12,7 +23,7 @@
   -webkit-transition: -webkit-transform .5s;
 
   &.menu-visible {
-//    display: block;
+    //    display: block;
   }
 
 }
