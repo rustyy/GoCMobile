@@ -92,7 +92,7 @@ var getContent = function (cat, nid) {
     }
 
     $.ajax({
-        cache: false,
+        cache: false, // @todo: remove, debugging only.
         type: 'GET',
         url: 'import.php',
         data: {'cat': c, 'node': n},
