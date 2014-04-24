@@ -23,40 +23,7 @@
 
 </head>
 <body>
-<div id="menu">
-
-  <ul>
-    <li>Startseite</li>
-    <li>
-      Projects
-      <ul>
-        <li>Bachelor</li>
-        <li>Master</li>
-      </ul>
-    </li>
-
-    <li>
-      Games Spot
-      <ul>
-        <li>HAW</li>
-        <li>Tests</li>
-        <li>News</li>
-      </ul>
-    </li>
-    <li>
-      Tech News
-      <ul>
-        <li>Software</li>
-        <li>Hardware</li>
-      </ul>
-    </li>
-
-
-  </ul>
-
-
-</div>
-
+<div id="menu"></div>
 
 <div id="logo">
   <img src="logo.gif">

@@ -80,6 +80,38 @@ var teaserConf = {
     }
 };
 
+/**
+ * Get menu tree from drupal export.
+ */
+$.ajax({
+    type: 'GET',
+    url: 'import.php',
+    data: { get_menu: true },
+    contentType: 'application/json',
+    success: function (data, status) {
+        var children = [], tree = [];
+
+        $.each(data['nodes'], function (i, node) {
+            if (node.node.ptid == 0) {
+                node.node.children = [];
+                tree.push(node.node);
+            }
+            else {
+                children.push(node.node);
+            }
+        });
+
+        children.forEach(function (child) {
+            tree.forEach(function (parent) {
+                if (child.ptid == parent.tid) {
+                    parent.children.push(child);
+                }
+            });
+        });
+        render(tree, 'menu');
+    }
+});
+
 var getContent = function (cat, nid) {
     var c = '', n = '';
     var viewFull = false;
@@ -91,11 +123,13 @@ var getContent = function (cat, nid) {
         viewFull = true;
     }
 
+    $('.loader').fadeIn('slow');
+
     $.ajax({
         cache: false, // @todo: remove, debugging only.
         type: 'GET',
         url: 'import.php',
-        data: {'cat': c, 'node': n},
+        data: { get_nodes: true, cat: c, node: n },
         contentType: 'application/json',
         success: function (data, status) {
             // Define medium-Teaser
@@ -123,7 +157,31 @@ var getContent = function (cat, nid) {
 var render = function (obj, view, conf) {
     if (view == 'teaser') renderTeaser(obj, conf);
     if (view == 'full') renderFull(obj);
+    if (view == 'menu') renderMenu(obj);
 }
+
+var renderMenu = function (tree) {
+    var view;
+    view = '<ul>';
+
+    // Render parents.
+    tree.forEach(function (o, i) {
+        var children = '';
+        // Render children.
+        if (o.children.length > 0) {
+            children += '<ul class="children">';
+            o.children.forEach(function (child) {
+                children += '<li><span  data-c="' + child.tid + '">' + child.name + '</span></li>';
+            });
+            children += '</ul>';
+        }
+
+        view += '<li><span data-c="' + o.tid + '">' + o.name + '</span>' + children + '</li>'
+    });
+    view += '</ul>';
+
+    $('#menu').append(view);
+};
 
 var renderTeaser = function (obj, conf) {
     var view;
@@ -201,7 +259,13 @@ $(document).ready(function () {
     $(document).on('click', '.teaser', function () {
         var c = $(this).attr('data-c');
         var n = $(this).attr('data-n');
-        $('.loader').fadeIn();
+//        $('.loader').fadeIn();
         getContent(c, n);
+    });
+
+    $(document).on('click', '#menu span', function () {
+        menu = $('#menu');
+        getContent($(this).attr('data-c'));
+        globalData.menuCSStoggle('hide', menu);
     });
 });
