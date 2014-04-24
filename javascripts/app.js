@@ -143,17 +143,17 @@ var renderTeaser = function (obj, conf) {
 
 var renderFull = function (obj) {
     var view;
-    console.log(obj);
+//    console.log(obj);
     view = '<div class="article">' +
         '<div class="article-image">' +
         '<img src="' + obj.field_media_image + '" />' +
         '</div>' +
-        '<h1>' + obj.field_kicker + '</h1>' +
-        '<h2>' + obj.title + '</h2>' +
+        '<div class="article-content">' +
+        '<h1 class="kicker">' + obj.field_kicker + '</h1>' +
+        '<h2 class="headline">' + obj.title + '</h2>' +
         obj.body +
-
-
-        '</div>'
+        '</div>' +
+        '</div>';
 
     $('.content-wrapper-inner').append(view);
 };

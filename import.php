@@ -12,7 +12,7 @@ if (isset($_GET['node'])) {
 }
 
 //@todo: remove rand() due needed for debugging purposes only.
-$url = 'http://goc:goc_admin@dev.gamesoncampus.de/export' . $category . $nid . '?' . rand();
+$url = 'http://goc:goc_admin@dev.gamesoncampus.de/export/nodes' . $category . $nid . '?' . rand();
 
 $json = file_get_contents($url);
 
