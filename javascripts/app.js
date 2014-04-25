@@ -201,7 +201,6 @@ var renderTeaser = function (obj, conf) {
 
 var renderFull = function (obj) {
     var view;
-//    console.log(obj);
     view = '<div class="article">' +
         '<div class="article-image">' +
         '<img src="' + obj.field_media_image + '" />' +

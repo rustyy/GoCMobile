@@ -7618,6 +7618,10 @@ button.close {
   z-index: 100;
   -webkit-transition: -webkit-transform .5s;
 }
+/* line 25, ../sass/layout/_layout.scss */
+#menu span {
+  cursor: pointer;
+}
 
 /* line 31, ../sass/layout/_layout.scss */
 #logo {

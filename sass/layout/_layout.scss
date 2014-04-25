@@ -22,8 +22,8 @@
 
   -webkit-transition: -webkit-transform .5s;
 
-  &.menu-visible {
-    //    display: block;
+  span {
+    cursor: pointer;
   }
 
 }
