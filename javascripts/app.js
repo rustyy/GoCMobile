@@ -80,80 +80,6 @@ var teaserConf = {
     }
 };
 
-/**
- * Get menu tree from drupal export.
- */
-$.ajax({
-    type: 'GET',
-    url: 'import.php',
-    data: { get_menu: true },
-    contentType: 'application/json',
-    success: function (data, status) {
-        var children = [], tree = [];
-
-        $.each(data['nodes'], function (i, node) {
-            if (node.node.ptid == 0) {
-                node.node.children = [];
-                tree.push(node.node);
-            }
-            else {
-                children.push(node.node);
-            }
-        });
-
-        children.forEach(function (child) {
-            tree.forEach(function (parent) {
-                if (child.ptid == parent.tid) {
-                    parent.children.push(child);
-                }
-            });
-        });
-        render(tree, 'menu');
-    }
-});
-
-var getContent = function (cat, nid) {
-    var c = '', n = '';
-    var viewFull = false;
-
-    if (cat) c = '/' + cat;
-
-    if (nid && cat) {
-        n = '/' + nid;
-        viewFull = true;
-    }
-
-    $('.loader').fadeIn('slow');
-
-    $.ajax({
-        cache: false, // @todo: remove, debugging only.
-        type: 'GET',
-        url: 'import.php',
-        data: { get_nodes: true, cat: c, node: n },
-        contentType: 'application/json',
-        success: function (data, status) {
-            // Define medium-Teaser
-            $('.content-wrapper-inner').empty();
-            var tm = [5, 6, 7, 8, 13, 14, 15, 16];
-            $.each(data['nodes'], function (i, node) {
-                if (viewFull) {
-                    render(node.node, 'full');
-                }
-                else {
-                    if (i == 0)
-                        render(node.node, 'teaser', teaserConf.teaserBig);
-                    else if (tm.indexOf(i) >= 0)
-                        render(node.node, 'teaser', teaserConf.teaserMedium);
-                    else
-                        render(node.node, 'teaser', teaserConf.teaserSmall);
-                }
-            });
-
-            $('.loader').fadeOut('slow');
-        }
-    })
-};
-
 var render = function (obj, view, conf) {
     if (view == 'teaser') renderTeaser(obj, conf);
     if (view == 'full') renderFull(obj);
@@ -202,12 +128,11 @@ var renderTeaser = function (obj, conf) {
 var renderFull = function (obj) {
     var view;
     view = '<div class="article">' +
-        '<div class="article-image">' +
-        '<img src="' + obj.field_media_image + '" />' +
+        '<div class="article-images">' +
         '</div>' +
         '<div class="article-content">' +
-        '<h1 class="kicker">' + obj.field_kicker + '</h1>' +
-        '<h2 class="headline">' + obj.title + '</h2>' +
+        '<h1 class="kicker">' + obj.kicker + '</h1>' +
+        '<h2 class="headline">' + obj.headline + '</h2>' +
         obj.body +
         '</div>' +
         '</div>';
@@ -219,11 +144,10 @@ window.addEventListener('orientationchange', function () {
     globalData.updateDimensions();
 });
 
-
 $(document).ready(function () {
     var menu = $('#menu');
 
-    getContent();
+    getNodes();
 
     globalData.updateDimensions();
 
@@ -256,15 +180,13 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.teaser', function () {
-        var c = $(this).attr('data-c');
         var n = $(this).attr('data-n');
-//        $('.loader').fadeIn();
-        getContent(c, n);
+        getNode(n);
     });
 
     $(document).on('click', '#menu span', function () {
         menu = $('#menu');
-        getContent($(this).attr('data-c'));
+        getNodes($(this).attr('data-c'));
         globalData.menuCSStoggle('hide', menu);
     });
 });

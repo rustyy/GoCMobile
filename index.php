@@ -18,6 +18,7 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
+  <script src="javascripts/ajax.js"></script>
   <script src="javascripts/app.js"></script>
 
 

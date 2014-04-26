@@ -1,28 +1,37 @@
 <?php header('content-type: application/json; charset=utf-8');
 
 //@todo: security issues to be solved.
+$host = $_SERVER['HTTP_HOST'];
 
-// Get nodes by arguments.
-if (isset($_GET['get_nodes'])) {
-  $category = '';
-  $nid = '';
-  if (isset($_GET['cat'])) {
-    $category = $_GET['cat'];
+// @todo: Remove due this only for local development.
+if ($host === 'phone.dev.gamesoncampus.de' || $host === 'tablet.dev.gamesoncampus.de') {
+  $host = 'goc:goc_admin@dev.gamesoncampus.de';
+}
+elseif ($host === 'tablet.dev.gamesoncampus.de') {
+  $host = 'goc:goc_admin@dev.gamesoncampus.de';
+}
+else {
+  $host = 'goc.local';
+}
+
+// Get nodes by term.
+if (isset($_GET['tid'])) {
+  $tid = strval(abs(intval($_GET['tid'])));
+  if (!$tid) {
+    $tid = '';
   }
-
-  if (isset($_GET['node'])) {
-    $nid = $_GET['node'];
-  }
-
-//@todo: remove rand() due needed for debugging purposes only.
-  $url = 'http://goc:goc_admin@dev.gamesoncampus.de/export/nodes' . $category . $nid . '?' . rand();
+  $url = 'http://' . $host . '/export/nodes/' . $tid . '?' . rand();
+}
+// Get single node.
+if (isset($_GET['nid'])) {
+  $nid = strval(intval($_GET['nid']));
+  $url = 'http://' . $host . '/node/' . $nid . '/export?' . rand();
 }
 
 // Get Menu terms.
 if (isset($_GET['get_menu'])) {
-  $url = 'http://goc:goc_admin@dev.gamesoncampus.de/export/menu';
+  $url = 'http://' . $host . '/export/menu';
 }
-
 
 $json = file_get_contents($url);
 
