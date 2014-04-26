@@ -1,4 +1,10 @@
 
+body {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+
 .loader {
 //  background: $red image-url('loader.gif') no-repeat center center;
 //  background-size: 100%;

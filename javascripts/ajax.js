@@ -25,7 +25,7 @@ $.ajax({
                 }
             });
         });
-        render(tree, 'menu');
+        renderMenu(tree);
     }
 });
 
@@ -36,9 +36,7 @@ $.ajax({
 var getNodes = function (tid) {
     $('.loader').fadeIn('slow');
 
-    if (!tid) {
-        tid = '';
-    }
+    if (!tid) tid = '';
 
     $.ajax({
         cache: false, // @todo: remove, debugging only.
@@ -47,19 +45,7 @@ var getNodes = function (tid) {
         data: { tid: tid },
         contentType: 'application/json',
         success: function (data, status) {
-            // Define medium-Teaser
-            $('.content-wrapper-inner').empty();
-            var tm = [5, 6, 7, 8, 13, 14, 15, 16];
-            console.log(data);
-            $.each(data, function (i, node) {
-                if (i == 0)
-                    render(node, 'teaser', teaserConf.teaserBig);
-                else if (tm.indexOf(i) >= 0)
-                    render(node, 'teaser', teaserConf.teaserMedium);
-                else
-                    render(node, 'teaser', teaserConf.teaserSmall);
-            });
-            $('.loader').fadeOut('slow');
+            render(data, 'teaser');
         }
     });
 };
@@ -78,10 +64,7 @@ var getNode = function (nid) {
         data: {nid: nid},
         contentType: 'application/json',
         success: function (data, status) {
-            // Define medium-Teaser
-            $('.content-wrapper-inner').empty();
             render(data, 'full');
-            $('.loader').fadeOut('slow');
         }
     })
 }

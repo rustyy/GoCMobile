@@ -7595,6 +7595,13 @@ button.close {
   }
 }
 /* line 2, ../sass/layout/_layout.scss */
+body {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* line 8, ../sass/layout/_layout.scss */
 .loader {
   background: rgba(255, 255, 255, 0.5);
   position: fixed;
@@ -7605,7 +7612,7 @@ button.close {
   z-index: 1000;
 }
 
-/* line 14, ../sass/layout/_layout.scss */
+/* line 20, ../sass/layout/_layout.scss */
 #menu {
   display: none;
   background: #af1028;
@@ -7617,12 +7624,12 @@ button.close {
   z-index: 100;
   -webkit-transition: -webkit-transform .5s;
 }
-/* line 26, ../sass/layout/_layout.scss */
+/* line 32, ../sass/layout/_layout.scss */
 #menu span {
   cursor: pointer;
 }
 
-/* line 32, ../sass/layout/_layout.scss */
+/* line 38, ../sass/layout/_layout.scss */
 #logo {
   position: fixed;
   width: 100px;
@@ -7631,14 +7638,14 @@ button.close {
   top: 0;
 }
 
-/* line 40, ../sass/layout/_layout.scss */
+/* line 46, ../sass/layout/_layout.scss */
 img {
   display: block;
   height: auto;
   max-width: 100%;
 }
 
-/* line 46, ../sass/layout/_layout.scss */
+/* line 52, ../sass/layout/_layout.scss */
 #content-wrapper {
   background: #fff;
 }
@@ -7764,4 +7771,47 @@ img {
 /* line 38, ../sass/layout/_article_view.scss */
 .article-content {
   padding: 20px;
+}
+
+/* line 43, ../sass/layout/_article_view.scss */
+#prev-article,
+#next-article {
+  background: #af1028;
+  color: #fff;
+}
+/* line 47, ../sass/layout/_article_view.scss */
+#prev-article .inner,
+#next-article .inner {
+  padding: 20px 10px 10px 10px;
+  text-align: center;
+}
+
+/* line 54, ../sass/layout/_article_view.scss */
+#next-article {
+  position: absolute;
+  z-index: 3000;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+/* line 63, ../sass/layout/_article_view.scss */
+#prev-article {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+/* line 69, ../sass/layout/_article_view.scss */
+#prev-article,
+#prev-article .overlay {
+  height: 50px;
+}
+/* line 73, ../sass/layout/_article_view.scss */
+#prev-article .overlay {
+  background: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }

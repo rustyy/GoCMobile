@@ -38,3 +38,44 @@
 .article-content {
   padding: 20px;
 }
+
+#prev-article,
+#next-article {
+  background: $red;
+  color: #fff;
+
+  .inner {
+    padding: 20px 10px 10px 10px;
+    text-align: center;
+  }
+
+}
+
+#next-article {
+  position: absolute;
+  z-index: 3000;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+#prev-article {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+
+  &,
+  .overlay {
+    height: 50px;
+  }
+
+  .overlay {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+
