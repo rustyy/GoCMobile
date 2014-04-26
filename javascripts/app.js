@@ -126,11 +126,27 @@ var renderTeaser = function (obj, conf) {
 }
 
 var renderFull = function (obj) {
-    var view;
-    view = '<div class="article">' +
-        '<div class="article-images">' +
-        '</div>' +
-        '<div class="article-content">' +
+    var view,
+        prevNid,
+        nextNid;
+
+    prevNid = (obj.prev_nid) ? ' data-prev-nid="' + parseInt(obj.prev_nid) + '" ' : '';
+    nextNid = (obj.next_nid) ? ' data-next-nid="' + parseInt(obj.next_nid) + '" ' : '';
+
+    view = '<div class="article"' + prevNid + nextNid + '>' +
+        '<div class="article-images">';
+
+    obj.images.forEach(function (v, i) {
+        //@todo: fallback if no image is present.
+        view += '<div class="image">' + v.image +
+            '<div>' + v.caption + '</div>' +
+            '<div>Foto: ' + v.copyright + '</div>' +
+            '</div>';
+    });
+
+    view += '</div>';
+
+    view += '<div class="article-content">' +
         '<h1 class="kicker">' + obj.kicker + '</h1>' +
         '<h2 class="headline">' + obj.headline + '</h2>' +
         obj.body +
@@ -147,7 +163,8 @@ window.addEventListener('orientationchange', function () {
 $(document).ready(function () {
     var menu = $('#menu');
 
-    getNodes();
+//    getNodes();
+    getNode(22); // Development;
 
     globalData.updateDimensions();
 
@@ -156,15 +173,39 @@ $(document).ready(function () {
             globalData.updateDimensions();
     });
 
-    $(document).on('touchstart', function () {
+
+    var documentIsTop = false;
+    var documentIsBottom = false;
+    var startY;
+    var endY;
+
+    $(document).on('touchstart', function (e) {
+        documentIsTop = ($(document).scrollTop() == 0);
+        documentIsBottom = (($(document).scrollTop() + globalData.wHeight) == $(document).height());
+        startY = e.originalEvent.touches[0].clientY;
     });
+
     $(document).on('touchmove', function (e) {
+        endY = e.originalEvent.touches[0].clientY;
         if (menu.hasClass('menu-visible'))
             e.preventDefault();
     });
-    $(document).on('touchend', function () {
-    });
 
+    $(document).on('touchend', function (e) {
+        var nidNext = $('.article').attr('data-next-nid');
+        var nidPrev = $('.article').attr('data-prev-nid');
+        var distance = startY - endY;
+
+        if (documentIsBottom && nidPrev && distance >= 50) {
+            getNode(nidPrev);
+        }
+        if (e.originalEvent.pageY == 0) {
+            // @todo: wait for ajax requests to be finished
+            if (documentIsTop && nidNext && Math.abs(distance) >= 50) {
+                getNode(nidNext);
+            }
+        }
+    });
 
     // Show menu.
     $('#logo').on('click', function () {

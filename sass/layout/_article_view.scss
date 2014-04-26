@@ -12,8 +12,17 @@
 
 .article {
 
-  .article-image {
+  .article-images {
     position: relative;
+
+    .image {
+
+    }
+
+    img {
+      width: 100%;
+    }
+
   }
 
   // @todo: global stuff for category to be defined.
