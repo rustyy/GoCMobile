@@ -7596,8 +7596,7 @@ button.close {
 }
 /* line 2, ../sass/layout/_layout.scss */
 .loader {
-  background: #af1028 url('../images/loader.gif?1398099560') no-repeat center center;
-  background-size: 100%;
+  background: rgba(255, 255, 255, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -7606,7 +7605,7 @@ button.close {
   z-index: 1000;
 }
 
-/* line 13, ../sass/layout/_layout.scss */
+/* line 14, ../sass/layout/_layout.scss */
 #menu {
   display: none;
   background: #af1028;
@@ -7618,12 +7617,12 @@ button.close {
   z-index: 100;
   -webkit-transition: -webkit-transform .5s;
 }
-/* line 25, ../sass/layout/_layout.scss */
+/* line 26, ../sass/layout/_layout.scss */
 #menu span {
   cursor: pointer;
 }
 
-/* line 31, ../sass/layout/_layout.scss */
+/* line 32, ../sass/layout/_layout.scss */
 #logo {
   position: fixed;
   width: 100px;
@@ -7632,14 +7631,14 @@ button.close {
   top: 0;
 }
 
-/* line 39, ../sass/layout/_layout.scss */
+/* line 40, ../sass/layout/_layout.scss */
 img {
   display: block;
   height: auto;
   max-width: 100%;
 }
 
-/* line 45, ../sass/layout/_layout.scss */
+/* line 46, ../sass/layout/_layout.scss */
 #content-wrapper {
   background: #fff;
 }
@@ -7732,48 +7731,37 @@ img {
   width: 70%;
 }
 
-/* line 1, ../sass/layout/_article_view.scss */
-#article-content {
-  position: absolute;
-  background: #000;
-  z-index: -1;
-  top: 0;
-}
-
-/* line 15, ../sass/layout/_article_view.scss */
+/* line 2, ../sass/layout/_article_view.scss */
 .article .article-images {
   position: relative;
 }
-/* line 22, ../sass/layout/_article_view.scss */
+/* line 8, ../sass/layout/_article_view.scss */
 .article .article-images img {
   width: 100%;
 }
-/* line 29, ../sass/layout/_article_view.scss */
+/* line 15, ../sass/layout/_article_view.scss */
 .article .category {
-  background: #fff;
-  bottom: 0;
-  left: 10px;
-  color: #af1028;
+  background: #af1028;
+  color: #fff;
   font-size: 10px;
-  padding: 2px;
-  position: absolute;
+  padding: 2px 10px;
 }
-/* line 40, ../sass/layout/_article_view.scss */
+/* line 23, ../sass/layout/_article_view.scss */
 .article .kicker,
 .article .headline {
   margin: 0;
 }
-/* line 44, ../sass/layout/_article_view.scss */
+/* line 27, ../sass/layout/_article_view.scss */
 .article .kicker {
   font-size: 17px;
 }
-/* line 48, ../sass/layout/_article_view.scss */
+/* line 31, ../sass/layout/_article_view.scss */
 .article .headline {
   font-size: 23px;
   margin-bottom: 20px;
 }
 
-/* line 55, ../sass/layout/_article_view.scss */
+/* line 38, ../sass/layout/_article_view.scss */
 .article-content {
   padding: 20px;
 }

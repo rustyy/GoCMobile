@@ -113,12 +113,12 @@ var renderTeaser = function (obj, conf) {
     var view;
     view = '<div class="' + conf.classes + '" data-c="' + obj.tid + '" data-n="' + obj.nid + '">' +
         '<div class="teaser-image">' +
-        '<div class="category">' + obj.term_node_tid + '</div>' +
-        '<img src="' + obj.field_media_image + '" />' +
+        '<div class="category">' + obj.term + '</div>' +
+        obj.image +
         '</div>' +
         '<div class="teaser-content">' +
-        '<' + conf.TagKicker + ' class="kicker">' + obj.field_kicker + '</' + conf.TagKicker + '>' +
-        '<' + conf.TagHeadline + ' class="headline">' + obj.field_kicker + '</' + conf.TagHeadline + '>' +
+        '<' + conf.TagKicker + ' class="kicker">' + obj.kicker + '</' + conf.TagKicker + '>' +
+        '<' + conf.TagHeadline + ' class="headline">' + obj.headline + '</' + conf.TagHeadline + '>' +
         '</div>' +
         '</div>';
 
@@ -134,6 +134,7 @@ var renderFull = function (obj) {
     nextNid = (obj.next_nid) ? ' data-next-nid="' + parseInt(obj.next_nid) + '" ' : '';
 
     view = '<div class="article"' + prevNid + nextNid + '>' +
+        '<div class="category">[KATEGORIE]</div>' +
         '<div class="article-images">';
 
     obj.images.forEach(function (v, i) {

@@ -18,9 +18,9 @@ else {
 if (isset($_GET['tid'])) {
   $tid = strval(abs(intval($_GET['tid'])));
   if (!$tid) {
-    $tid = '';
+    $tid = 'all';
   }
-  $url = 'http://' . $host . '/export/nodes/' . $tid . '?' . rand();
+  $url = 'http://' . $host . '/export_nodes/' . $tid . '?' . rand();
 }
 // Get single node.
 if (isset($_GET['nid'])) {

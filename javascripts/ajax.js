@@ -50,13 +50,14 @@ var getNodes = function (tid) {
             // Define medium-Teaser
             $('.content-wrapper-inner').empty();
             var tm = [5, 6, 7, 8, 13, 14, 15, 16];
-            $.each(data['nodes'], function (i, node) {
+            console.log(data);
+            $.each(data, function (i, node) {
                 if (i == 0)
-                    render(node.node, 'teaser', teaserConf.teaserBig);
+                    render(node, 'teaser', teaserConf.teaserBig);
                 else if (tm.indexOf(i) >= 0)
-                    render(node.node, 'teaser', teaserConf.teaserMedium);
+                    render(node, 'teaser', teaserConf.teaserMedium);
                 else
-                    render(node.node, 'teaser', teaserConf.teaserSmall);
+                    render(node, 'teaser', teaserConf.teaserSmall);
             });
             $('.loader').fadeOut('slow');
         }
