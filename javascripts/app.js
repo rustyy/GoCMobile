@@ -163,8 +163,8 @@ window.addEventListener('orientationchange', function () {
 $(document).ready(function () {
     var menu = $('#menu');
 
-//    getNodes();
-    getNode(22); // Development;
+    getNodes();
+//    getNode(22); // Development;
 
     globalData.updateDimensions();
 
