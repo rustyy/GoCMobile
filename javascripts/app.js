@@ -101,6 +101,8 @@ var documentIsBottom = false;
 var startY;
 var endY;
 
+//var t = $('#content-wrapper').css('top');
+
 /******************************************************************************************************************
  * Functions
  */
@@ -247,8 +249,41 @@ $(document).on('touchstart', function (e) {
 });
 
 $(document).on('touchmove', function (e) {
+
     var distance = startY - endY;
+//    var docHeight = $(document).height();
+//    var bottom = globalData.wHeight + Math.abs(t) + distance;
     endY = e.originalEvent.touches[0].clientY;
+
+//    e.preventDefault();
+//
+//    if (t == 'auto') t = 0;
+//    else
+//        t = parseInt(t);
+//
+//    // Scroll down, distance positive.
+//    if (distance > 0) {
+//        if (t <= 0 && bottom < docHeight) {
+//            $('#content-wrapper').css({
+//                top: t - distance + 'px'
+//            });
+//        }
+//    }
+//    // Scroll up, distance negative.
+//    if (distance < 0) {
+//        console.log(t);
+//        if (t < 0) {
+//            $('#content-wrapper').css({
+//                top: t + Math.abs(distance) + 'px'
+//            });
+//        }
+//    }
+//
+//    if (t == 0 && Math.abs(distance) <= 50) {
+//        $('#next-article').css({
+//            '-webkit-transform': 'translateY(' + -distance + 'px)'
+//        });
+//    }
 
     if ($(document).scrollTop() == 0 && Math.abs(distance) <= 50) {
         $('#next-article').css({
@@ -257,8 +292,6 @@ $(document).on('touchmove', function (e) {
     }
 
     if (($(document).scrollTop() + globalData.wHeight) >= $(document).height() && Math.abs(distance) <= 50) {
-        console.log('unten');
-
         $('#prev-article .overlay').css({
             '-webkit-transform': 'translateY(' + (-distance ) + 'px) translateZ(0.1px)'
         });
@@ -274,13 +307,15 @@ $(document).on('touchend', function (e) {
     var nidPrev = $('.article').attr('data-prev-nid');
     var distance = startY - endY;
 
+//    t = $('#content-wrapper').css('top');
+
     if (documentIsBottom && nidPrev && distance >= 50) {
-//        getNode(nidPrev);
+        getNode(nidPrev);
     }
     if (e.originalEvent.pageY == 0) {
         // @todo: wait for ajax requests to be finished
         if (documentIsTop && nidNext && distance <= -50) {
-//            getNode(nidNext);
+            getNode(nidNext);
         }
     }
     $('#next-article').attr('style', '');
@@ -293,6 +328,6 @@ $(document).on('touchend', function (e) {
  */
 
 globalData.updateDimensions();
-//    getNodes();
-getNode(22);
+    getNodes();
+//getNode(22);
 
