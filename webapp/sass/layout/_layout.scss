@@ -1,14 +1,19 @@
+* {
+  box-sizing: border-box;
+}
 
 body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   position: relative;
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
 }
 
 .loader {
-//  background: $red image-url('loader.gif') no-repeat center center;
-//  background-size: 100%;
-  background: rgba(255,255,255,0.5);
+  //  background: $red image-url('loader.gif') no-repeat center center;
+  //  background-size: 100%;
+  background: rgba(255, 255, 255, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -50,7 +55,7 @@ img {
 }
 
 #content-wrapper {
-//  position: relative;
+  //  position: relative;
   background: #fff;
 }
 

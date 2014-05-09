@@ -10,12 +10,7 @@
   <link rel="apple-touch-icon" size="76x76" href="apple-icons/touch-icon-ipad.png">
   <link rel="apple-touch-icon" size="120x120" href="apple-icons/touch-icon-iphone-retina.png">
   <link rel="apple-touch-icon" size="152x152" href="apple-icons/touch-icon-ipad-retina.png">
-
-
   <link rel="stylesheet" href="stylesheets/styles.css">
-
-
-
 
 </head>
 <body>
@@ -37,9 +32,6 @@
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
 <script src="javascripts/ajax.js"></script>
 <script src="javascripts/app.js"></script>
 </body>

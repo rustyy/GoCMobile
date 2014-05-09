@@ -137,6 +137,8 @@ var renderMenu = function (tree) {
     var view;
     view = '<ul>';
 
+    view += '<li>Startseite</li>';
+
     // Render parents.
     tree.forEach(function (o, i) {
         var children = '';
@@ -176,8 +178,6 @@ var renderFull = function (obj) {
     var view,
         prevNid,
         nextNid;
-
-    console.log(obj.images);
 
     prevNid = (obj.prev_nid) ? ' data-prev-nid="' + parseInt(obj.prev_nid) + '" ' : '';
     nextNid = (obj.next_nid) ? ' data-next-nid="' + parseInt(obj.next_nid) + '" ' : '';
