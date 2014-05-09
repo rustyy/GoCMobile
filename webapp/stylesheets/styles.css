@@ -7,12 +7,13 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
+  margin: 0;
   position: relative;
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
 }
 
-/* line 13, ../sass/layout/_layout.scss */
+/* line 14, ../sass/layout/_layout.scss */
 .loader {
   background: rgba(255, 255, 255, 0.5);
   position: fixed;
@@ -23,10 +24,22 @@ body {
   z-index: 1000;
 }
 
-/* line 25, ../sass/layout/_layout.scss */
+/* line 26, ../sass/layout/_layout.scss */
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* line 32, ../sass/layout/_layout.scss */
+#content-wrapper {
+  background: #fff;
+}
+
+/* line 1, ../sass/layout/_menu.scss */
 #menu {
   display: none;
-  background: #af1028;
+  background: #7a0b1c;
   color: #fff;
   position: fixed;
   right: 0;
@@ -35,30 +48,41 @@ body {
   z-index: 100;
   -webkit-transition: -webkit-transform .5s;
 }
-/* line 37, ../sass/layout/_layout.scss */
+/* line 13, ../sass/layout/_menu.scss */
 #menu span {
   cursor: pointer;
 }
+/* line 17, ../sass/layout/_menu.scss */
+#menu ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 22, ../sass/layout/_menu.scss */
+#menu ul:first-child {
+  margin-top: 30px;
+}
+/* line 26, ../sass/layout/_menu.scss */
+#menu li {
+  background: #7a0b1c;
+  font-weight: 700;
+  list-style: none;
+  margin: 5px;
+  padding: 3px 10px;
+  border-bottom: 1px solid #fff;
+}
+/* line 34, ../sass/layout/_menu.scss */
+#menu li li {
+  border-bottom: 0;
+  font-weight: normal;
+}
 
-/* line 43, ../sass/layout/_layout.scss */
+/* line 42, ../sass/layout/_menu.scss */
 #logo {
   position: fixed;
   width: 100px;
   z-index: 200;
   right: 10px;
   top: 0;
-}
-
-/* line 51, ../sass/layout/_layout.scss */
-img {
-  display: block;
-  height: auto;
-  max-width: 100%;
-}
-
-/* line 57, ../sass/layout/_layout.scss */
-#content-wrapper {
-  background: #fff;
 }
 
 /* line 5, ../sass/layout/_teaser.scss */

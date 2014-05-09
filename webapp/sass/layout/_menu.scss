@@ -1,0 +1,48 @@
+#menu {
+  display: none;
+  background: shade($red, 30);
+  color: #fff;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+
+  -webkit-transition: -webkit-transform .5s;
+
+  span {
+    cursor: pointer;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul:first-child {
+    margin-top: 30px;
+  }
+
+  li {
+    background: shade($red, 30);
+    font-weight: 700;
+    list-style: none;
+    margin: 5px;
+    padding: 3px 10px;
+    border-bottom: 1px solid #fff;
+
+    li {
+      border-bottom: 0;
+      font-weight: normal;
+    }
+  }
+
+}
+
+#logo {
+  position: fixed;
+  width: 100px;
+  z-index: 200;
+  right: 10px;
+  top: 0;
+}
