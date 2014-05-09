@@ -17,9 +17,20 @@
   .kicker {
     font-size: 13px;
   }
+
   .headline {
     font-size: 17px;
   }
+
+  .category {
+    background: $red;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px;
+    position: absolute;
+    z-index: 2;
+  }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +39,10 @@
 
 .teaser-big {
   position: relative;
+
+  img {
+    width: 100%;
+  }
 
   .teaser-content {
     bottom: 0;
@@ -47,12 +62,7 @@
   width: 50%;
 
   .category {
-    background: $red;
     bottom: 0;
-    color: #fff;
-    font-size: 10px;
-    padding: 2px;
-    position: absolute;
   }
 
   .teaser-content {
@@ -77,12 +87,7 @@
   }
 
   .category {
-    background: $red;
     bottom: 0;
-    color: #fff;
-    font-size: 10px;
-    padding: 2px;
-    position: absolute;
   }
 
   .teaser-content {

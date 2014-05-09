@@ -179,6 +179,8 @@ var renderFull = function (obj) {
         prevNid,
         nextNid;
 
+    console.log(obj.images);
+
     prevNid = (obj.prev_nid) ? ' data-prev-nid="' + parseInt(obj.prev_nid) + '" ' : '';
     nextNid = (obj.next_nid) ? ' data-next-nid="' + parseInt(obj.next_nid) + '" ' : '';
 
@@ -186,13 +188,13 @@ var renderFull = function (obj) {
         '<div class="category">[KATEGORIE]</div>' +
         '<div class="article-images">';
 
-//    obj.images.forEach(function (v, i) {
-//        //@todo: fallback if no image is present.
-//        view += '<div class="image">' + v.image +
-//            '<div>' + v.caption + '</div>' +
-//            '<div>Foto: ' + v.copyright + '</div>' +
-//            '</div>';
-//    });
+    obj.images.forEach(function (v, i) {
+        //@todo: fallback if no image is present.
+        view += '<div class="image">' + v.image +
+            '<div>' + (v.caption || '') + '</div>' +
+            '<div>' + ('Foto: ' + v.copyright || '') + '</div>' +
+            '</div>';
+    });
 
     view += '</div>';
 
@@ -251,39 +253,8 @@ $(document).on('touchstart', function (e) {
 $(document).on('touchmove', function (e) {
 
     var distance = startY - endY;
-//    var docHeight = $(document).height();
-//    var bottom = globalData.wHeight + Math.abs(t) + distance;
     endY = e.originalEvent.touches[0].clientY;
 
-//    e.preventDefault();
-//
-//    if (t == 'auto') t = 0;
-//    else
-//        t = parseInt(t);
-//
-//    // Scroll down, distance positive.
-//    if (distance > 0) {
-//        if (t <= 0 && bottom < docHeight) {
-//            $('#content-wrapper').css({
-//                top: t - distance + 'px'
-//            });
-//        }
-//    }
-//    // Scroll up, distance negative.
-//    if (distance < 0) {
-//        console.log(t);
-//        if (t < 0) {
-//            $('#content-wrapper').css({
-//                top: t + Math.abs(distance) + 'px'
-//            });
-//        }
-//    }
-//
-//    if (t == 0 && Math.abs(distance) <= 50) {
-//        $('#next-article').css({
-//            '-webkit-transform': 'translateY(' + -distance + 'px)'
-//        });
-//    }
 
     if ($(document).scrollTop() == 0 && Math.abs(distance) <= 50) {
         $('#next-article').css({
@@ -307,8 +278,6 @@ $(document).on('touchend', function (e) {
     var nidPrev = $('.article').attr('data-prev-nid');
     var distance = startY - endY;
 
-//    t = $('#content-wrapper').css('top');
-
     if (documentIsBottom && nidPrev && distance >= 50) {
         getNode(nidPrev);
     }
@@ -328,6 +297,6 @@ $(document).on('touchend', function (e) {
  */
 
 globalData.updateDimensions();
-    getNodes();
-//getNode(22);
+//    getNodes();
+getNode(22);
 
