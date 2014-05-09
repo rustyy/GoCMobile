@@ -225,7 +225,6 @@ window.addEventListener('orientationchange', function () {
 });
 
 $(document).on('scroll', function (e) {
-    if (!menu.hasClass('menu-visible'))
         globalData.updateDimensions();
 });
 
