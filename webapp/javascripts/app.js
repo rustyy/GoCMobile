@@ -101,8 +101,6 @@ var documentIsBottom = false;
 var startY;
 var endY;
 
-//var t = $('#content-wrapper').css('top');
-
 /******************************************************************************************************************
  * Functions
  */
@@ -185,14 +183,16 @@ var renderFull = function (obj) {
     nextNid = (obj.next_nid) ? ' data-next-nid="' + parseInt(obj.next_nid) + '" ' : '';
 
     view = '<div class="article"' + prevNid + nextNid + '>' +
-        '<div class="category">[KATEGORIE]</div>' +
+        '<div class="category">' + obj.category + '</div>' +
         '<div class="article-images">';
 
     obj.images.forEach(function (v, i) {
         //@todo: fallback if no image is present.
         view += '<div class="image">' + v.image +
+            '<div class="image-info">' +
             '<div>' + (v.caption || '') + '</div>' +
             '<div>' + ('Foto: ' + v.copyright || '') + '</div>' +
+            '</div>' +
             '</div>';
     });
 
@@ -297,6 +297,6 @@ $(document).on('touchend', function (e) {
  */
 
 globalData.updateDimensions();
-//    getNodes();
-getNode(22);
+    getNodes();
+//getNode(22);
 

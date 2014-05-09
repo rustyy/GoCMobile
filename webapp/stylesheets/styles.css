@@ -7749,47 +7749,53 @@ img {
 .article .article-images img {
   width: 100%;
 }
-/* line 15, ../sass/layout/_article_view.scss */
+/* line 14, ../sass/layout/_article_view.scss */
+.article .image-info {
+  background: #000;
+  color: #fff;
+  padding: 10px;
+}
+/* line 21, ../sass/layout/_article_view.scss */
 .article .category {
   background: #af1028;
   color: #fff;
   font-size: 10px;
   padding: 2px 10px;
 }
-/* line 23, ../sass/layout/_article_view.scss */
+/* line 29, ../sass/layout/_article_view.scss */
 .article .kicker,
 .article .headline {
   margin: 0;
 }
-/* line 27, ../sass/layout/_article_view.scss */
+/* line 33, ../sass/layout/_article_view.scss */
 .article .kicker {
   font-size: 17px;
 }
-/* line 31, ../sass/layout/_article_view.scss */
+/* line 37, ../sass/layout/_article_view.scss */
 .article .headline {
   font-size: 23px;
   margin-bottom: 20px;
 }
 
-/* line 38, ../sass/layout/_article_view.scss */
+/* line 44, ../sass/layout/_article_view.scss */
 .article-content {
   padding: 20px;
 }
 
-/* line 43, ../sass/layout/_article_view.scss */
+/* line 49, ../sass/layout/_article_view.scss */
 #prev-article,
 #next-article {
   background: #af1028;
   color: #fff;
 }
-/* line 47, ../sass/layout/_article_view.scss */
+/* line 53, ../sass/layout/_article_view.scss */
 #prev-article .inner,
 #next-article .inner {
   padding: 20px 10px 10px 10px;
   text-align: center;
 }
 
-/* line 54, ../sass/layout/_article_view.scss */
+/* line 60, ../sass/layout/_article_view.scss */
 #next-article {
   position: absolute;
   z-index: 3000;
@@ -7799,18 +7805,18 @@ img {
   height: 50px;
 }
 
-/* line 63, ../sass/layout/_article_view.scss */
+/* line 69, ../sass/layout/_article_view.scss */
 #prev-article {
   position: relative;
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
 }
-/* line 69, ../sass/layout/_article_view.scss */
+/* line 75, ../sass/layout/_article_view.scss */
 #prev-article,
 #prev-article .overlay {
   height: 50px;
 }
-/* line 73, ../sass/layout/_article_view.scss */
+/* line 79, ../sass/layout/_article_view.scss */
 #prev-article .overlay {
   background: #fff;
   position: absolute;

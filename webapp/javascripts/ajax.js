@@ -1,10 +1,13 @@
+var baseUrl = 'http://goc:goc_admin@dev.gamesoncampus.de';
+
 /**
  * Get menu tree from drupal export.
  */
 $.ajax({
     type: 'GET',
-    url: 'import.php',
-    data: { get_menu: true },
+    url: baseUrl + '/export/menu',
+    jsonp: 'export_menu',
+    dataType: 'jsonp',
     contentType: 'application/json',
     success: function (data, status) {
         var children = [], tree = [];
@@ -36,13 +39,14 @@ $.ajax({
 var getNodes = function (tid) {
     $('.loader').fadeIn('slow');
 
-    if (!tid) tid = '';
+    if (!tid) tid = 'all';
 
     $.ajax({
         cache: false, // @todo: remove, debugging only.
         type: 'GET',
-        url: 'import.php',
-        data: { tid: tid },
+        jsonp: 'export_nodes_callback',
+        url: baseUrl + '/export_nodes/' + tid,
+        dataType: 'jsonp',
         contentType: 'application/json',
         success: function (data, status) {
             render(data, 'teaser');
@@ -60,8 +64,9 @@ var getNode = function (nid) {
     $.ajax({
         cache: false, // @todo: remove, debugging only.
         type: 'GET',
-        url: 'import.php',
-        data: {nid: nid},
+        jsonp: 'export_node_callback',
+        dataType: 'jsonp',
+        url: baseUrl + '/node/' + nid + '/export',
         contentType: 'application/json',
         success: function (data, status) {
             render(data, 'full');
