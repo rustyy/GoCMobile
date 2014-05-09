@@ -1,0 +1,58 @@
+
+body {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+
+.loader {
+//  background: $red image-url('loader.gif') no-repeat center center;
+//  background-size: 100%;
+  background: rgba(255,255,255,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+#menu {
+  display: none;
+  background: $red;
+  color: #fff;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+
+  -webkit-transition: -webkit-transform .5s;
+
+  span {
+    cursor: pointer;
+  }
+
+}
+
+#logo {
+  position: fixed;
+  width: 100px;
+  z-index: 200;
+  right: 10px;
+  top: 0;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+#content-wrapper {
+//  position: relative;
+  background: #fff;
+}
+
+
+

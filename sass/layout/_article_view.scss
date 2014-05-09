@@ -1,0 +1,81 @@
+.article {
+  .article-images {
+    position: relative;
+
+    .image {
+    }
+
+    img {
+      width: 100%;
+    }
+
+  }
+
+  // @todo: global stuff for category to be defined.
+  .category {
+    background: $red;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 10px;
+  }
+
+  .kicker,
+  .headline {
+    margin: 0;
+  }
+
+  .kicker {
+    font-size: 17px;
+  }
+
+  .headline {
+    font-size: 23px;
+    margin-bottom: 20px;
+  }
+
+}
+
+.article-content {
+  padding: 20px;
+}
+
+#prev-article,
+#next-article {
+  background: $red;
+  color: #fff;
+
+  .inner {
+    padding: 20px 10px 10px 10px;
+    text-align: center;
+  }
+
+}
+
+#next-article {
+  position: absolute;
+  z-index: 3000;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+#prev-article {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+
+  &,
+  .overlay {
+    height: 50px;
+  }
+
+  .overlay {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+
