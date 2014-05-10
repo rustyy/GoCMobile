@@ -137,7 +137,7 @@ var renderMenu = function (tree) {
     var view;
     view = '<ul>';
 
-    view += '<li>Startseite</li>';
+    view += '<li><span>Startseite</span></li>';
 
     // Render parents.
     tree.forEach(function (o, i) {

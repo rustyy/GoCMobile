@@ -45,11 +45,9 @@
   }
 
   .teaser-content {
-    bottom: 0;
     background: $red;
     color: #fff;
     padding: 10px;
-    position: absolute;
   }
 }
 
@@ -67,6 +65,10 @@
 
   .teaser-content {
     padding: 4px;
+
+    .headline {
+      color: $red;
+    }
   }
 
 }
@@ -87,11 +89,15 @@
   }
 
   .category {
-    bottom: 0;
+    display: none;
   }
 
   .teaser-content {
     padding: 0 10px;
     width: 70%;
+
+    .headline {
+      color: $red;
+    }
   }
 }

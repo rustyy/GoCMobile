@@ -20,7 +20,7 @@
   }
 
   ul:first-child {
-    margin-top: 30px;
+    margin-top: 56px;
   }
 
   li {
@@ -40,9 +40,15 @@
 }
 
 #logo {
+  background: $red;
+  clear: both;
   position: fixed;
-  width: 100px;
-  z-index: 200;
-  right: 10px;
   top: 0;
+  width: 100%;
+  z-index: 200;
+
+  img {
+    width: 100px;
+    float: right;
+  }
 }

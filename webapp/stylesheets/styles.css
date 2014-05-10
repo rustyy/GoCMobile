@@ -34,6 +34,7 @@ img {
 /* line 32, ../sass/layout/_layout.scss */
 #content-wrapper {
   background: #fff;
+  padding-top: 56px;
 }
 
 /* line 1, ../sass/layout/_menu.scss */
@@ -59,7 +60,7 @@ img {
 }
 /* line 22, ../sass/layout/_menu.scss */
 #menu ul:first-child {
-  margin-top: 30px;
+  margin-top: 56px;
 }
 /* line 26, ../sass/layout/_menu.scss */
 #menu li {
@@ -78,11 +79,17 @@ img {
 
 /* line 42, ../sass/layout/_menu.scss */
 #logo {
+  background: #af1028;
+  clear: both;
   position: fixed;
-  width: 100px;
-  z-index: 200;
-  right: 10px;
   top: 0;
+  width: 100%;
+  z-index: 200;
+}
+/* line 50, ../sass/layout/_menu.scss */
+#logo img {
+  width: 100px;
+  float: right;
 }
 
 /* line 5, ../sass/layout/_teaser.scss */
@@ -126,54 +133,60 @@ img {
 }
 /* line 47, ../sass/layout/_teaser.scss */
 .teaser-big .teaser-content {
-  bottom: 0;
   background: #af1028;
   color: #fff;
   padding: 10px;
-  position: absolute;
 }
 
-/* line 60, ../sass/layout/_teaser.scss */
+/* line 58, ../sass/layout/_teaser.scss */
 .teaser-medium {
   float: left;
   width: 50%;
 }
-/* line 64, ../sass/layout/_teaser.scss */
+/* line 62, ../sass/layout/_teaser.scss */
 .teaser-medium .category {
   bottom: 0;
 }
-/* line 68, ../sass/layout/_teaser.scss */
+/* line 66, ../sass/layout/_teaser.scss */
 .teaser-medium .teaser-content {
   padding: 4px;
 }
+/* line 69, ../sass/layout/_teaser.scss */
+.teaser-medium .teaser-content .headline {
+  color: #af1028;
+}
 
-/* line 78, ../sass/layout/_teaser.scss */
+/* line 80, ../sass/layout/_teaser.scss */
 .teaser-small {
   *zoom: 1;
 }
-/* line 38, ../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .teaser-small:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 81, ../sass/layout/_teaser.scss */
+/* line 83, ../sass/layout/_teaser.scss */
 .teaser-small .teaser-image,
 .teaser-small .teaser-content {
   float: left;
 }
-/* line 85, ../sass/layout/_teaser.scss */
+/* line 87, ../sass/layout/_teaser.scss */
 .teaser-small .teaser-image {
   width: 30%;
 }
-/* line 89, ../sass/layout/_teaser.scss */
+/* line 91, ../sass/layout/_teaser.scss */
 .teaser-small .category {
-  bottom: 0;
+  display: none;
 }
-/* line 93, ../sass/layout/_teaser.scss */
+/* line 95, ../sass/layout/_teaser.scss */
 .teaser-small .teaser-content {
   padding: 0 10px;
   width: 70%;
+}
+/* line 99, ../sass/layout/_teaser.scss */
+.teaser-small .teaser-content .headline {
+  color: #af1028;
 }
 
 /* line 2, ../sass/layout/_article_view.scss */
@@ -208,29 +221,30 @@ img {
 }
 /* line 37, ../sass/layout/_article_view.scss */
 .article .headline {
+  color: #af1028;
   font-size: 23px;
   margin-bottom: 20px;
 }
 
-/* line 44, ../sass/layout/_article_view.scss */
+/* line 45, ../sass/layout/_article_view.scss */
 .article-content {
   padding: 20px;
 }
 
-/* line 49, ../sass/layout/_article_view.scss */
+/* line 50, ../sass/layout/_article_view.scss */
 #prev-article,
 #next-article {
   background: #af1028;
   color: #fff;
 }
-/* line 53, ../sass/layout/_article_view.scss */
+/* line 54, ../sass/layout/_article_view.scss */
 #prev-article .inner,
 #next-article .inner {
   padding: 20px 10px 10px 10px;
   text-align: center;
 }
 
-/* line 60, ../sass/layout/_article_view.scss */
+/* line 61, ../sass/layout/_article_view.scss */
 #next-article {
   position: absolute;
   z-index: 3000;
@@ -240,18 +254,18 @@ img {
   height: 50px;
 }
 
-/* line 69, ../sass/layout/_article_view.scss */
+/* line 70, ../sass/layout/_article_view.scss */
 #prev-article {
   position: relative;
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
 }
-/* line 75, ../sass/layout/_article_view.scss */
+/* line 76, ../sass/layout/_article_view.scss */
 #prev-article,
 #prev-article .overlay {
   height: 50px;
 }
-/* line 79, ../sass/layout/_article_view.scss */
+/* line 80, ../sass/layout/_article_view.scss */
 #prev-article .overlay {
   background: #fff;
   position: absolute;
