@@ -187,12 +187,11 @@ var renderFull = function (obj) {
         '<div class="article-images">';
 
     obj.images.forEach(function (v, i) {
-        //@todo: fallback if no image is present.
-        view += '<div class="image">' + v.image +
-            '<div class="image-info">' +
-            '<div>' + (v.caption || '') + '</div>' +
-            '<div>' + ('Foto: ' + v.copyright || '') + '</div>' +
-            '</div>' +
+        var copyright = (v.copyright != null) ? '<div>Foto: ' + v.copyright + '</div>' : false;
+        var caption = (v.caption) ? '<div>' + v.caption + '</div>' : false;
+        view += '<div class="image">' +
+            v.image +
+            '<div class="image-info">' + (caption || '') + (copyright || '') + '</div>' +
             '</div>';
     });
 
@@ -251,7 +250,6 @@ $(document).on('touchstart', function (e) {
 $(document).on('touchmove', function (e) {
     endY = e.originalEvent.changedTouches[0].clientY;
     var distance = startY - endY;
-
 
 
     if ($(document).scrollTop() == 0 && Math.abs(distance) <= 50) {
