@@ -187,12 +187,11 @@ var renderFull = function (obj) {
         '<div class="article-images">';
 
     obj.images.forEach(function (v, i) {
-        //@todo: fallback if no image is present.
-        view += '<div class="image">' + v.image +
-            '<div class="image-info">' +
-            '<div>' + (v.caption || '') + '</div>' +
-            '<div>' + ('Foto: ' + v.copyright || '') + '</div>' +
-            '</div>' +
+        var copyright = (v.copyright != null) ? '<div>Foto: ' + v.copyright + '</div>' : false;
+        var caption = (v.caption) ? '<div>' + v.caption + '</div>' : false;
+        view += '<div class="image">' +
+            v.image +
+            '<div class="image-info">' + (caption || '') + (copyright || '') + '</div>' +
             '</div>';
     });
 
@@ -225,8 +224,7 @@ window.addEventListener('orientationchange', function () {
 });
 
 $(document).on('scroll', function (e) {
-    if (!menu.hasClass('menu-visible'))
-        globalData.updateDimensions();
+    globalData.updateDimensions();
 });
 
 $(document).on('click', '.teaser', function () {
@@ -243,7 +241,6 @@ logo.on('click', function () {
     globalData.menuToggle();
 });
 
-
 $(document).on('touchstart', function (e) {
     documentIsTop = ($(document).scrollTop() == 0);
     documentIsBottom = (($(document).scrollTop() + globalData.wHeight) == $(document).height());
@@ -251,9 +248,8 @@ $(document).on('touchstart', function (e) {
 });
 
 $(document).on('touchmove', function (e) {
-
+    endY = e.originalEvent.changedTouches[0].clientY;
     var distance = startY - endY;
-    endY = e.originalEvent.touches[0].clientY;
 
 
     if ($(document).scrollTop() == 0 && Math.abs(distance) <= 50) {
@@ -272,8 +268,8 @@ $(document).on('touchmove', function (e) {
         e.preventDefault();
 });
 
-
 $(document).on('touchend', function (e) {
+    endY = e.originalEvent.changedTouches[0].clientY;
     var nidNext = $('.article').attr('data-next-nid');
     var nidPrev = $('.article').attr('data-prev-nid');
     var distance = startY - endY;
@@ -291,12 +287,11 @@ $(document).on('touchend', function (e) {
     $('#prev-article .overlay').attr('style', '');
 });
 
-
 /******************************************************************************************************************
  * RUN
  */
 
 globalData.updateDimensions();
-    getNodes();
+getNodes();
 //getNode(22);
 
