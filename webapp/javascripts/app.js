@@ -225,7 +225,7 @@ window.addEventListener('orientationchange', function () {
 });
 
 $(document).on('scroll', function (e) {
-        globalData.updateDimensions();
+    globalData.updateDimensions();
 });
 
 $(document).on('click', '.teaser', function () {
@@ -242,7 +242,6 @@ logo.on('click', function () {
     globalData.menuToggle();
 });
 
-
 $(document).on('touchstart', function (e) {
     documentIsTop = ($(document).scrollTop() == 0);
     documentIsBottom = (($(document).scrollTop() + globalData.wHeight) == $(document).height());
@@ -250,9 +249,9 @@ $(document).on('touchstart', function (e) {
 });
 
 $(document).on('touchmove', function (e) {
-
+    endY = e.originalEvent.changedTouches[0].clientY;
     var distance = startY - endY;
-    endY = e.originalEvent.touches[0].clientY;
+
 
 
     if ($(document).scrollTop() == 0 && Math.abs(distance) <= 50) {
@@ -271,8 +270,8 @@ $(document).on('touchmove', function (e) {
         e.preventDefault();
 });
 
-
 $(document).on('touchend', function (e) {
+    endY = e.originalEvent.changedTouches[0].clientY;
     var nidNext = $('.article').attr('data-next-nid');
     var nidPrev = $('.article').attr('data-prev-nid');
     var distance = startY - endY;
@@ -290,12 +289,11 @@ $(document).on('touchend', function (e) {
     $('#prev-article .overlay').attr('style', '');
 });
 
-
 /******************************************************************************************************************
  * RUN
  */
 
 globalData.updateDimensions();
-    getNodes();
+getNodes();
 //getNode(22);
 
