@@ -476,6 +476,7 @@
 				B33D458D18FE6F5C00D3DABC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B33D458E18FE6F5C00D3DABC /* Build configuration list for PBXNativeTarget "GoCiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +485,7 @@
 				B33D459018FE6F5C00D3DABC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
