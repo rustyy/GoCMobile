@@ -1,6 +1,7 @@
 .DS_Store
 .sass-cache
 .idea 
+*.sublime-workspace
 
 # Xcode
 #
