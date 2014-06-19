@@ -179,6 +179,8 @@ var renderFull = function (obj) {
         prevNid,
         nextNid;
 
+        console.log(obj);
+
     prevNid = (obj.prev_nid) ? ' data-prev-nid="' + parseInt(obj.prev_nid) + '" ' : '';
     nextNid = (obj.next_nid) ? ' data-next-nid="' + parseInt(obj.next_nid) + '" ' : '';
 
@@ -269,6 +271,7 @@ $(document).on('touchmove', function (e) {
 });
 
 $(document).on('touchend', function (e) {
+    console.log('touchend');
     endY = e.originalEvent.changedTouches[0].clientY;
     var nidNext = $('.article').attr('data-next-nid');
     var nidPrev = $('.article').attr('data-prev-nid');
@@ -277,9 +280,13 @@ $(document).on('touchend', function (e) {
     if (documentIsBottom && nidPrev && distance >= 50) {
         getNode(nidPrev);
     }
+    console.log(e.originalEvent.pageY);
+    console.log(documentIsTop);
+    console.log(nidNext);
     if (e.originalEvent.pageY == 0) {
         // @todo: wait for ajax requests to be finished
         if (documentIsTop && nidNext && distance <= -50) {
+
             getNode(nidNext);
         }
     }
